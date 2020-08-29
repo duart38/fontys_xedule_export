@@ -10,3 +10,5 @@
 3. Make sure that "Tijdlijn Periode" or "Timeline period" is selected (if it was not, select it and then reload the page)
 4. wait for a second
 5. click the download button.
+
+![download](https://github.com/duart38/fontys_xedule_export/blob/master/download.png "tut_dow")
