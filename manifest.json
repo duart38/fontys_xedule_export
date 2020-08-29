@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+
+    "name": "Xeduler",
+    "version": "1.0.0",
+    
+    "description": "Fontys Xeduler exporting tool",
+    "web_accessible_resources" : ["xeduler.js", "injector.js"],
+    "content_scripts": [{
+        "js": ["xeduler.js", "injector.js"],
+        "matches": ["https://sa-fontys.xedule.nl/*"]
+    }]
+}
