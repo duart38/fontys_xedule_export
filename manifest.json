@@ -9,5 +9,8 @@
     "content_scripts": [{
         "js": ["xeduler.js", "injector.js"],
         "matches": ["https://sa-fontys.xedule.nl/*"]
-    }]
+    }],
+    "permissions": [
+        "downloads"
+    ]
 }

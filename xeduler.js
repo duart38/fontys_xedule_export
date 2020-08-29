@@ -4,9 +4,18 @@ function load() {
         setTimeout(function () { return load(); }, 5000);
     }
     else {
-        if(window["entities"].Store == undefined || window["entities"].Store._instances == undefined) setTimeout(function () { return load(); }, 5000);
-        else{
-            console.log(pushInCalendar(constructEvents()));
+        if (window["entities"].Store == undefined || window["entities"].Store._instances == undefined || window["entities"].Store._instances.schedule == undefined) setTimeout(function () { return load(); }, 5000);
+        else {
+            let d = new Date()
+
+            window.URL = window.webkitURL || window.URL;
+            var file = new Blob([pushInCalendar(constructEvents())], {type: 'text/plain'}); //we used to need to check for 'WebKitBlobBuilder' here - but no need anymore
+            var a = document.createElement('a');
+            a.href = window.URL.createObjectURL(file);
+            a.download = `${d.getFullYear()}${d.getMonth()}${d.getDate()}_xedule_export.ics`; // set the file name
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click(); //this is probably the key - simulatating a click on a download link
         }
     }
 }
@@ -17,9 +26,9 @@ function generateIcalDate(date) {
     let isoSTR = dateobj.toISOString(); // 2020-08-28T16:09:17.911Z  (.<num>Z = milisecs)
     let extracted_isoDate = isoSTR.split("T")[0].replace(/-/g, "");
     let extracted_isoTime = isoSTR
-      .split("T")[1]
-      .replace(/:/g, "")
-      .replace(/\.\d*/g, "");
+        .split("T")[1]
+        .replace(/:/g, "")
+        .replace(/\.\d*/g, "");
     //19980118T230000 -> 1998-01-18 (yyyy-mm-dd)
     return `${extracted_isoDate}T${extracted_isoTime}`;
 }
