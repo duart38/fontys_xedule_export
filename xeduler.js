@@ -70,9 +70,9 @@ END:VEVENT`;
     return events;
 }
 function pushInCalendar(evs) {
-    return `VERSION:2.0
+    return `BEGIN:VCALENDAR
+VERSION:2.0
 PRODID:-//duartsnel//hackedcal//EN
-BEGIN:VCALENDAR
 ${evs.join("\n")}
 END:VCALENDAR`;
 }
