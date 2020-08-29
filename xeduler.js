@@ -13,9 +13,16 @@ function load() {
             var a = document.createElement('a');
             a.href = window.URL.createObjectURL(file);
             a.download = `${d.getFullYear()}${d.getMonth()}${d.getDate()}_xedule_export.ics`; // set the file name
-            a.style.display = 'none';
+            a.style.display = 'block';
+            a.style.width = "200px"
+            a.style.backgroundColor = "#222222"
+            a.style.fontSize = "3rem"
+            a.style.padding = "10px"
+            a.style.color = "white"
+            a.innerHTML = "Download calendar file"
+
             document.body.appendChild(a);
-            a.click(); //this is probably the key - simulatating a click on a download link
+            //a.click(); //this is probably the key - simulatating a click on a download link
         }
     }
 }
