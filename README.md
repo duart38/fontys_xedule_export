@@ -5,7 +5,7 @@
 4. Confirm. 
 
 # Usage
-1. Go to (the scheduling tool)[https://sa-fontys.xedule.nl/]
+1. Go to https://sa-fontys.xedule.nl/
 2. Right click and inspect element, go to the console tab
 3. Make sure that "Tijdlijn Periode" or "Timeline period" is selected (if it was not, select it and then reload the page)
 4. wait for a second
