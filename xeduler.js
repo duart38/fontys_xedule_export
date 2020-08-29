@@ -4,8 +4,10 @@ function load() {
         setTimeout(function () { return load(); }, 5000);
     }
     else {
-        console.log(window["entities"].Store._instances.schedule, Object.keys(window["entities"].Store._instances.schedule));
-        console.log(pushInCalendar(constructEvents()));
+        if(window["entities"].Store == undefined || window["entities"].Store._instances == undefined) setTimeout(function () { return load(); }, 5000);
+        else{
+            console.log(pushInCalendar(constructEvents()));
+        }
     }
 }
 load();
@@ -28,9 +30,9 @@ function constructEvents() {
             let icalEvent = `BEGIN:VEVENT
 UID:${value.id}
 SEQUENCE:0
-DTSTAMP:${generateIcalDate(value.start)}
-DTSTART:${generateIcalDate(value.end)}
-DTEND:${generateIcalDate(value.start)}
+DTSTAMP:${generateIcalDate(new Date(value.iStart))}
+DTSTART:${generateIcalDate(new Date(value.iStart))}
+DTEND:${generateIcalDate(new Date(value.iEnd))}
 LOCATION:${
                 value.attention !== "ONLINE"
                     ? "Fontys Venlo Tegelseweg 255\\, 5912 BG Venlo\\, Netherlands"
