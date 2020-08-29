@@ -7,21 +7,27 @@ function load() {
         if (window["entities"].Store == undefined || window["entities"].Store._instances == undefined || window["entities"].Store._instances.schedule == undefined) setTimeout(function () { return load(); }, 5000);
         else {
             let d = new Date()
+            let pagec = document.getElementById("home");
 
             window.URL = window.webkitURL || window.URL;
             var file = new Blob([pushInCalendar(constructEvents())], {type: 'text/plain'}); //we used to need to check for 'WebKitBlobBuilder' here - but no need anymore
             var a = document.createElement('a');
             a.href = window.URL.createObjectURL(file);
             a.download = `${d.getFullYear()}${d.getMonth()}${d.getDate()}_xedule_export.ics`; // set the file name
-            a.style.display = 'block';
-            a.style.width = "200px"
             a.style.backgroundColor = "#222222"
-            a.style.fontSize = "3rem"
+            a.style.fontSize = "4rem"
             a.style.padding = "10px"
             a.style.color = "white"
+            a.style.borderRadius = "6px"
             a.innerHTML = "Download calendar file"
 
-            document.body.appendChild(a);
+            var div = document.createElement('div');
+            div.className = "col-lg-4 col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1"
+            div.innerHTML = '<div class="panel panel-info panel-home"><div id="xedular_custom_export" class="panel-body"><span class="glyphicon glyphicon-download"></span></div></div>';
+            pagec.prepend(div)
+            document.getElementById("xedular_custom_export").appendChild(a)
+
+            //document.body.appendChild(a);
             //a.click(); //this is probably the key - simulatating a click on a download link
         }
     }
